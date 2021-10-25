@@ -1,3 +1,4 @@
+import 'package:cryptocurrency_flutter/domain/model/coin.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'coin_dto.g.dart';
@@ -14,10 +15,20 @@ class CoinDto {
   final String symbol;
   final String type;
 
-  CoinDto(this.id, this.isActive, this.isNew, this.name, this.rank, this.symbol, this.type);
+  CoinDto(this.id, this.isActive, this.isNew, this.name, this.rank, this.symbol,
+      this.type);
 
-  factory CoinDto.fromJson(Map<String, dynamic> json) => _$CoinDtoFromJson(json);
+  factory CoinDto.fromJson(Map<String, dynamic> json) =>
+      _$CoinDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoinDtoToJson(this);
 
+  Coin toCoin() => Coin(
+      id: id,
+      isActive: isActive,
+      isNew: isNew,
+      name: name,
+      rank: rank,
+      symbol: symbol,
+      type: type);
 }

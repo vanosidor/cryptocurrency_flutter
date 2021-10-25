@@ -1,7 +1,7 @@
 import 'package:cryptocurrency_flutter/data/remote/dto/coin_detail_dto.dart';
 import 'package:equatable/equatable.dart';
 
-class CoinDetail extends Equatable {
+class CoinDetails extends Equatable {
   final String description;
   final String developmentStatus;
   final String firstDataAt;
@@ -26,7 +26,7 @@ class CoinDetail extends Equatable {
   final String type;
   final Whitepaper whitepaper;
 
-  const CoinDetail(
+  const CoinDetails(
       this.description,
       this.developmentStatus,
       this.firstDataAt,

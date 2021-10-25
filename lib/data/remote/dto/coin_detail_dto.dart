@@ -1,3 +1,4 @@
+import 'package:cryptocurrency_flutter/domain/model/coin_details.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'coin_detail_dto.g.dart';
@@ -69,13 +70,37 @@ class CoinDetailDto {
       _$CoinDetailDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CoinDetailDtoToJson(this);
+
+  CoinDetails toCoinDetail() => CoinDetails(
+      description,
+      developmentStatus,
+      firstDataAt,
+      hardwareWallet,
+      hashAlgorithm,
+      id,
+      isActive,
+      isNew,
+      lastDataAt,
+      links,
+      linksExtended,
+      message,
+      name,
+      openSource,
+      orgStructure,
+      proofType,
+      rank,
+      startedAt,
+      symbol,
+      tags,
+      team,
+      type,
+      whitepaper);
 }
 
 class Team {
   final String id;
   final String name;
   final String position;
-
 
   Team({required this.id, required this.name, required this.position});
 
@@ -102,7 +127,11 @@ class Tag {
   String id;
   String name;
 
-  Tag({required this.coin_counter, required this.ico_counter, required this.id, required this.name});
+  Tag(
+      {required this.coin_counter,
+      required this.ico_counter,
+      required this.id,
+      required this.name});
 
   factory Tag.fromJson(Map<String, dynamic> json) {
     return Tag(
@@ -186,15 +215,13 @@ class Links {
 }
 
 class LinksExtended {
-  final Stats stats;
   final String type;
   final String url;
 
-  LinksExtended({required this.stats, required this.type, required this.url});
+  LinksExtended({required this.type, required this.url});
 
   factory LinksExtended.fromJson(Map<String, dynamic> json) {
     return LinksExtended(
-      stats: Stats.fromJson(json['stats']) ,
       type: json['type'],
       url: json['url'],
     );
@@ -204,36 +231,15 @@ class LinksExtended {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['type'] = this.type;
     data['url'] = this.url;
-    if (this.stats != null) {
-      data['stats'] = this.stats.toJson();
-    }
-    return data;
-  }
-}
-
-class Stats {
-  final int followers;
-
-  Stats({required this.followers});
-
-  factory Stats.fromJson(Map<String, dynamic> json) {
-    return Stats(
-      followers: json['followers'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['followers'] = this.followers;
     return data;
   }
 }
 
 class Whitepaper {
-  final String link;
-  final String thumbnail;
+  final String? link;
+  final String? thumbnail;
 
-  Whitepaper({required this.link,  required this.thumbnail});
+  Whitepaper({required this.link, this.thumbnail});
 
   factory Whitepaper.fromJson(Map<String, dynamic> json) {
     return Whitepaper(
